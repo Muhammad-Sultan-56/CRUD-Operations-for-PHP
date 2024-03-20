@@ -26,8 +26,13 @@ if (isset($_POST['submit'])) {
             $s_3 = isset($_POST['s_3']) ? $_POST['s_3'] : null;
 
             $sql2 = "INSERT INTO subjects (`student_id`, `s_1`, `s_2`, `s_3`) VALUES($last_id, '$s_1', '$s_2', '$s_3')";
-            if (!mysqli_query($db_con, $sql2)) {
+            if (mysqli_query($db_con, $sql2)) {
+
+                header("Location:show-data.php");
+            }
+            else{
                 echo "data not inserted";
+
             }
         }
     } else {
@@ -87,7 +92,7 @@ if (isset($_POST['submit'])) {
                 <div class="d-flex gap-5">
                     <div> <input type="checkbox" class="form-check-input shadow-none" name="s_1" value="Math" /> Mathematics</div>
                     <div> <input type="checkbox" class="form-check-input shadow-none" name="s_2" value="Science" /> Science</div>
-                    <div> <input type="checkbox" class="form-check-input shadow-none" name="s_3" value="Bio" /> Biology </div>
+                    <div> <input type="checkbox" class="form-check-input shadow-none" name="s_3" value="Biology" /> Biology </div>
 
                 </div>
             </div>
