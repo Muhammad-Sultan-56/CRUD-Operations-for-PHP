@@ -65,7 +65,7 @@
                     <td><?php echo $city;  ?></td>
                     <td><?php echo $gender;  ?></td>
                     <td> <?php echo $s_1." ". $s_2 ." " . $s_3 ?></td>
-                    <td><a href="" class="btn btn-warning btn-sm">Edit</a>
+                    <td><a href="edit.php?id=<?=$id?>" class="btn btn-warning btn-sm">Edit</a>
                           |  
                     <a href="" class="btn btn-danger btn-sm">Delete</a></a> </td>
                 </tr>
