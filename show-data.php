@@ -34,12 +34,9 @@
 
                 <?php
                 // database connection
-                $db_con = mysqli_connect("localhost", "root", "", "php_crud");
-                if (!$db_con) {
-                    die("database not connected");
-                }
+              include("config.php");
 
-                $sql = "SELECT * FROM `students` INNER JOIN `subjects` ON students.student_id = subjects.student_id ";
+                $sql = "SELECT * FROM `students` JOIN `subjects` ON students.student_id = subjects.student_id ";
                 $result = mysqli_query($db_con , $sql);
 
               if(mysqli_num_rows($result) > 0){
@@ -64,10 +61,10 @@
                     <td><?php echo $age;  ?></td>
                     <td><?php echo $city;  ?></td>
                     <td><?php echo $gender;  ?></td>
-                    <td> <?php echo $s_1." ". $s_2 ." " . $s_3 ?></td>
+                    <td> <?php echo $s_1." , ". $s_2 ." , " . $s_3 ?></td>
                     <td><a href="edit.php?id=<?=$id?>" class="btn btn-warning btn-sm">Edit</a>
                           |  
-                    <a href="" class="btn btn-danger btn-sm">Delete</a></a> </td>
+                    <a href="delete.php?id=<?=$id?>" class="btn btn-danger btn-sm">Delete</a></td>
                 </tr>
 
          <?php

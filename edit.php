@@ -1,23 +1,19 @@
 <?php
-                // database connection
-                $db_con = mysqli_connect("localhost", "root", "", "php_crud");
-                if (!$db_con) {
-                    die("database not connected");
-                }
+include("config.php");
 
-                $id = $_GET['id'];
+$id = $_GET['id'];
 
-                $sql = "SELECT * FROM `students` INNER JOIN `subjects` ON students.student_id = subjects.student_id WHERE students.student_id=$id";
-                $result = mysqli_query($db_con , $sql);
+$sql = "SELECT * FROM `students` INNER JOIN `subjects` ON students.student_id = subjects.student_id WHERE students.student_id=$id";
+$result = mysqli_query($db_con, $sql);
 
-              if(mysqli_num_rows($result) > 0){
-                $result = mysqli_fetch_assoc($result);
+if (mysqli_num_rows($result) > 0) {
+    $result = mysqli_fetch_assoc($result);
 
-                echo "<pre>"; print_r($result); echo "</pre>";
-              } else {
-                die("no record found");
-              }
-              ?>
+    // echo "<pre>"; print_r($result); echo "</pre>";
+} else {
+    die("no record found");
+}
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -35,18 +31,18 @@
         <h2 class="text-center text-white bg-danger p-2 mb-3">Registration Form</h2>
 
         <form method="POST" action="update.php">
-            <input type="hidden" name="id" value="<?= $result['student_id']?>" />
+            <input type="hidden" name="id" value="<?= $result['student_id'] ?>" />
             <label class="form-label">Name</label>
 
-            <input type="text" value="<?=$result['student_name']?>" class="form-control shadow-none border border-danger mb-3" name="name" placeholder="First Name" required />
+            <input type="text" value="<?= $result['student_name'] ?>" class="form-control shadow-none border border-danger mb-3" name="name" placeholder="First Name" required />
 
             <label class="form-label">Age</label>
 
-            <input type="number" value="<?=$result['student_age']?>" class="form-control shadow-none border border-danger mb-3" name="age" placeholder="Age" />
+            <input type="number" value="<?= $result['student_age'] ?>" class="form-control shadow-none border border-danger mb-3" name="age" placeholder="Age" />
 
 
             <label class="form-label">City</label>
-            <select name="city" value="<?=$result['student_city']?>" class="form-control shadow-none border border-danger mb-3">
+            <select name="city" value="<?= $result['student_city'] ?>" class="form-control shadow-none border border-danger mb-3">
                 <option disabled selected>Choose City</option>
                 <option value="lodhran" <?php echo ($result['student_city'] == 'lodhran') ? 'selected' : ""  ?>>Lodhran</option>
                 <option value="bahawalpur" <?php echo ($result['student_city'] == 'bahawalpur') ? 'selected' : ""  ?>>Bahawalpur</option>
@@ -63,7 +59,7 @@
             <div class="mb-3">
                 <label class="form-label">Subjects </label>
                 <div class="d-flex gap-5">
-                    <div> <input type="checkbox" class="form-check-input shadow-none" name="s_1" value="Math" <?php echo ($result['s_1'] == 'Math') ? 'checked' : ""  ?>  /> Mathematics</div>
+                    <div> <input type="checkbox" class="form-check-input shadow-none" name="s_1" value="Math" <?php echo ($result['s_1'] == 'Math') ? 'checked' : ""  ?> /> Mathematics</div>
                     <div> <input type="checkbox" class="form-check-input shadow-none" name="s_2" value="Science" <?php echo ($result['s_2'] == 'Science') ? 'checked' : ""  ?> /> Science</div>
                     <div> <input type="checkbox" class="form-check-input shadow-none" name="s_3" value="Biology" <?php echo ($result['s_3'] == 'Biology') ? 'checked' : ""  ?> /> Biology </div>
 
@@ -71,7 +67,7 @@
             </div>
 
             <div class="w-50 mx-auto">
-                <input type="submit" class="btn btn-danger w-100" name="submit" value="Submit" />
+                <input type="submit" class="btn btn-danger w-100" name="submit" value="Edit Data" />
             </div>
         </form>
     </div>
